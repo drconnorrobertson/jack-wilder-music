@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://jackwildercountry.com/sitemap.xml
+
+# Disallow admin and private paths
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.env
+Disallow: /config/
+
+# Slow down aggressive crawlers
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
