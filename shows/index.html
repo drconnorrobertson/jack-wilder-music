@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Jack Wilder tour dates and upcoming shows in Pittsburgh and beyond.">
-  <meta name="keywords" content="Jack Wilder tour dates, shows, concerts, Pittsburgh music">
-  <meta property="og:title" content="Jack Wilder - Tour Dates & Shows">
-  <meta property="og:description" content="Upcoming shows and tour dates for Jack Wilder in Pittsburgh.">
+  <meta name="description" content="Complete tour dates and show archive for Jack Wilder. View all past and upcoming performances.">
+  <meta name="keywords" content="Jack Wilder tour dates, shows, concerts, archive, Pittsburgh music">
+  <meta property="og:title" content="Jack Wilder - Complete Show Archive">
+  <meta property="og:description" content="Browse all of Jack Wilder's tour dates, past shows, and upcoming performances.">
+  <meta name="twitter:card" content="summary_large_image">
   <title>Tour Dates & Shows | Jack Wilder</title>
   <link rel="canonical" href="https://jackwildercountry.com/shows/">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -15,12 +16,109 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "MusicEvent",
-    "name": "Jack Wilder Tour",
-    "performer": "Jack Wilder",
-    "url": "https://jackwildercountry.com/shows/"
+    "@type": "MusicGroup",
+    "name": "Jack Wilder",
+    "url": "https://jackwildercountry.com/shows/",
+    "description": "Complete archive of Jack Wilder tour dates and performances"
   }
   </script>
+
+  <style>
+    .show-filter-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn.active {
+      background: var(--accent);
+      color: var(--bg-dark);
+    }
+
+    .shows-list {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .show-list-item {
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 204, 0, 0.2);
+      background: rgba(255, 204, 0, 0.05);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .show-list-item:hover {
+      border-color: var(--accent);
+      background: rgba(255, 204, 0, 0.1);
+      transform: translateX(5px);
+    }
+
+    .show-list-item.hidden {
+      display: none;
+    }
+
+    .show-list-item.upcoming {
+      border-left: 4px solid var(--accent);
+    }
+
+    .show-list-item.past {
+      border-left: 4px solid rgba(255, 204, 0, 0.4);
+      opacity: 0.85;
+    }
+
+    .show-date {
+      font-size: 0.9rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .show-venue-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .show-location {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .show-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+    }
+
+    .show-link {
+      display: inline-block;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .show-link:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
   <!-- Navigation -->
@@ -44,78 +142,207 @@
   <section class="hero dark" style="min-height: 50vh;">
     <div class="hero-content">
       <h1>Tour Dates</h1>
-      <p class="hero-tagline">CATCH JACK LIVE</p>
-      <p style="color: var(--text-muted); font-size: 1.1rem;">Pittsburgh and Regional Performances</p>
+      <p class="hero-tagline">COMPLETE SHOW ARCHIVE</p>
+      <p style="color: var(--text-muted); font-size: 1.1rem;">Past and Upcoming Performances</p>
     </div>
   </section>
 
-  <!-- Upcoming Shows -->
+  <!-- Shows -->
   <section class="dark">
     <div class="container">
       <div class="section-header">
-        <h2>Upcoming Shows</h2>
-        <p>Don't miss Jack's upcoming performances</p>
+        <h2>All Shows</h2>
+        <p>Browse Jack's complete tour archive</p>
       </div>
 
-      <div class="shows-grid">
-        <div class="show-card reveal">
+      <!-- Filter Buttons -->
+      <div class="show-filter-buttons">
+        <button class="filter-btn active" onclick="filterShows('all')">All Shows</button>
+        <button class="filter-btn" onclick="filterShows('upcoming')">Upcoming</button>
+        <button class="filter-btn" onclick="filterShows('past')">Past</button>
+      </div>
+
+      <!-- Shows List -->
+      <div class="shows-list">
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">April 15, 2025</div>
+          <div class="show-venue-name">Moondog's</div>
+          <div class="show-location">Blawnox, PA</div>
+          <a href="/shows/moondog-s-blawnox-april-2025/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">May 02, 2025</div>
+          <div class="show-venue-name">Hard Rock Cafe</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/hard-rock-cafe-pittsburgh-may-2025/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">May 20, 2025</div>
+          <div class="show-venue-name">Mr. Smalls Theatre</div>
+          <div class="show-location">Millvale, PA</div>
+          <a href="/shows/mr-smalls-theatre-millvale-may-2025/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">June 10, 2025</div>
+          <div class="show-venue-name">Crafthouse Stage & Grill</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/crafthouse-stage-grill-june-2025/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">June 28, 2025</div>
+          <div class="show-venue-name">The Rex Theater</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/rex-theater-pittsburgh-june-2025/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">July 15, 2025</div>
+          <div class="show-venue-name">Rivers Casino</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/rivers-casino-pittsburgh-july-2025/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">August 05, 2025</div>
+          <div class="show-venue-name">Acrisure Stadium Tailgate</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/acrisure-stadium-tailgate-august-2025/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">August 22, 2025</div>
+          <div class="show-venue-name">Wood Street Galleries</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/wood-street-galleries-august-2025/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">September 10, 2025</div>
+          <div class="show-venue-name">Heinz History Center</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/heinz-history-center-september-2025/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">September 25, 2025</div>
+          <div class="show-venue-name">The Blockhouse</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/blockhouse-september-2025/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">October 12, 2025</div>
+          <div class="show-venue-name">Point State Park</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/point-state-park-october-2025/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">October 30, 2025</div>
+          <div class="show-venue-name">Belvedere's</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/belvederes-october-2025/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">November 08, 2025</div>
+          <div class="show-venue-name">The Mockingbird</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/mockingbird-november-2025/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">November 22, 2025</div>
+          <div class="show-venue-name">South Side Supper Club</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/south-side-supper-november-2025/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">December 19, 2025</div>
+          <div class="show-venue-name">Market Square Holiday Festival</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/market-square-december-2025/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">January 10, 2026</div>
+          <div class="show-venue-name">Heinz History Center</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/heinz-history-january-2026/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">February 14, 2026</div>
+          <div class="show-venue-name">South Side Supper Club</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/south-side-supper-february-2026/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">February 28, 2026</div>
+          <div class="show-venue-name">Belvedere's</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/belvederes-february-2026/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">March 15, 2026</div>
+          <div class="show-venue-name">The Thunderbird Cafe</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/thunderbird-cafe-march-2026/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">April 20, 2026</div>
+          <div class="show-venue-name">Y108 Song on the Spot</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/y108-song-on-the-spot-april-2026/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">May 05, 2026</div>
+          <div class="show-venue-name">Heinz Field Pre-Game</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/heinz-field-preg-game-may-2026/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
           <div class="show-date">May 15, 2026</div>
-          <div class="show-venue">Thrival Music Festival</div>
-          <div class="show-location">Mellon Square Park, Pittsburgh, PA</div>
-          <p style="color: var(--text-muted); margin: 1rem 0; line-height: 1.6;">Jack takes the stage at Pittsburgh's premier music festival celebrating art, wellness, and community. This is the perfect opportunity to experience his high-energy performance alongside other incredible artists.</p>
-          <div class="show-time">6:00 PM - Gates Open 5:00 PM</div>
-          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 1rem;"><strong>Admission:</strong> Festival Pass Required</p>
-          <a href="https://thrival.com" target="_blank" rel="noopener" class="btn" style="display: inline-block; margin-top: 1rem;">Get Tickets</a>
+          <div class="show-venue-name">Thrival Music Festival</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/thrival-festival-may-2026/" class="show-link">View Details →</a>
         </div>
-
-        <div class="show-card reveal">
-          <div class="show-date">June 3, 2026</div>
-          <div class="show-venue">Fiber Festival</div>
-          <div class="show-location">Strip District, Pittsburgh, PA</div>
-          <p style="color: var(--text-muted); margin: 1rem 0; line-height: 1.6;">Jack provides live country entertainment at Pittsburgh's celebration of fiber arts and creativity. An intimate setting perfect for experiencing his authentic songwriting and performances up close.</p>
-          <div class="show-time">7:30 PM - Doors at 6:30 PM</div>
-          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 1rem;"><strong>Admission:</strong> Festival Pass or $15 at Door</p>
-          <a href="https://fibergallery.org" target="_blank" rel="noopener" class="btn" style="display: inline-block; margin-top: 1rem;">Get Tickets</a>
+        <div class="show-list-item past" data-type="past">
+          <div class="show-date">June 03, 2026</div>
+          <div class="show-venue-name">Fiber Festival</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/fiber-festival-june-2026/" class="show-link">View Details →</a>
         </div>
-
-        <div class="show-card reveal">
+        <div class="show-list-item upcoming" data-type="upcoming">
+          <div class="show-date">June 06, 2026</div>
+          <div class="show-venue-name">Lindos</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/lindos-pittsburgh-june-2026/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
           <div class="show-date">June 21, 2026</div>
-          <div class="show-venue">PNC Park</div>
+          <div class="show-venue-name">PNC Park</div>
           <div class="show-location">Pittsburgh, PA</div>
-          <p style="color: var(--text-muted); margin: 1rem 0; line-height: 1.6;">Jack performs the National Anthem and provides pre-game entertainment for Pittsburgh Pirates baseball. A special performance at one of America's most iconic ballparks.</p>
-          <div class="show-time">4:00 PM - Pirates vs Reds</div>
-          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 1rem;"><strong>Event:</strong> MLB Baseball Game</p>
-          <a href="https://www.mlb.com/pirates" target="_blank" rel="noopener" class="btn" style="display: inline-block; margin-top: 1rem;">Get Tickets</a>
+          <a href="/shows/pnc-park-june-2026/" class="show-link">View Details →</a>
         </div>
-
-        <div class="show-card reveal">
+        <div class="show-list-item upcoming" data-type="upcoming">
+          <div class="show-date">July 10, 2026</div>
+          <div class="show-venue-name">Stage AE</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/stage-ae-pittsburgh-july-2026/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item past" data-type="past">
           <div class="show-date">July 18, 2026</div>
-          <div class="show-venue">South Side Supper Club</div>
+          <div class="show-venue-name">South Side Supper Club</div>
           <div class="show-location">Pittsburgh, PA</div>
-          <p style="color: var(--text-muted); margin: 1rem 0; line-height: 1.6;">An intimate acoustic evening with Jack performing songs from his catalog, plus stories from his journey. A special performance for true fans in a classic Pittsburgh venue.</p>
-          <div class="show-time">8:00 PM - Doors at 7:30 PM</div>
-          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 1rem;"><strong>Admission:</strong> $20 in Advance / $25 at Door</p>
-          <a href="https://southsidesupper.com" target="_blank" rel="noopener" class="btn" style="display: inline-block; margin-top: 1rem;">Reserve</a>
+          <a href="/shows/south-side-supper-july-2026/" class="show-link">View Details →</a>
         </div>
-
-        <div class="show-card reveal">
-          <div class="show-date">August 5, 2026</div>
-          <div class="show-venue">The Blockhouse</div>
+        <div class="show-list-item upcoming" data-type="upcoming">
+          <div class="show-date">August 14, 2026</div>
+          <div class="show-venue-name">Jergel's Rhythm Grille</div>
+          <div class="show-location">Warrendale, PA</div>
+          <a href="/shows/jergels-warrendale-august-2026/" class="show-link">View Details →</a>
+        </div>
+        <div class="show-list-item upcoming" data-type="upcoming">
+          <div class="show-date">August 28, 2026</div>
+          <div class="show-venue-name">Thunderbird Cafe</div>
           <div class="show-location">Pittsburgh, PA</div>
-          <p style="color: var(--text-muted); margin: 1rem 0; line-height: 1.6;">High-energy full band performance at one of Pittsburgh's favorite live music venues. Experience Jack's music in its fullest, most energetic form with the complete band.</p>
-          <div class="show-time">9:00 PM - Doors at 8:30 PM</div>
-          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 1rem;"><strong>Admission:</strong> $18 in Advance / $22 at Door</p>
-          <a href="https://theblockhouse.com" target="_blank" rel="noopener" class="btn" style="display: inline-block; margin-top: 1rem;">Buy Tickets</a>
+          <a href="/shows/thunderbird-cafe-pittsburgh-2026/" class="show-link">View Details →</a>
         </div>
-
-        <div class="show-card reveal">
-          <div class="show-date">September 12, 2026</div>
-          <div class="show-venue">Sunset Music Series</div>
-          <div class="show-location">Point State Park, Pittsburgh, PA</div>
-          <p style="color: var(--text-muted); margin: 1rem 0; line-height: 1.6;">Jack performs as part of Pittsburgh's beloved Sunset Music Series in the heart of the city. A beautiful outdoor evening of country music with a stunning view of the Pittsburgh skyline.</p>
-          <div class="show-time">7:00 PM - Music Starts 7:30 PM</div>
-          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 1rem;"><strong>Admission:</strong> FREE</p>
-          <a href="https://pittsburghparks.org" target="_blank" rel="noopener" class="btn" style="display: inline-block; margin-top: 1rem;">Info</a>
+        <div class="show-list-item upcoming" data-type="upcoming">
+          <div class="show-date">September 18, 2026</div>
+          <div class="show-venue-name">Club Cafe</div>
+          <div class="show-location">Pittsburgh, PA</div>
+          <a href="/shows/club-cafe-pittsburgh-2026/" class="show-link">View Details →</a>
         </div>
       </div>
     </div>
@@ -154,57 +381,6 @@
       <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin: 2rem 0;">
         <a href="/booking/" class="btn primary">Send Booking Inquiry</a>
         <a href="mailto:jackwildermanagement@gmail.com" class="btn">Email Management</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Past Shows -->
-  <section class="darker">
-    <div class="container">
-      <h2 style="text-align: center; margin-bottom: 3rem;">Past Shows</h2>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem;">
-        <div class="show-card">
-          <div class="show-date">April 20, 2026</div>
-          <div class="show-venue">Y108 Song on the Spot</div>
-          <div class="show-location">Pittsburgh, PA</div>
-          <p style="color: var(--text-muted); margin: 1rem 0;">The viral performance where Jack wrote a Pittsburgh country song in 5 minutes</p>
-        </div>
-
-        <div class="show-card">
-          <div class="show-date">March 15, 2026</div>
-          <div class="show-venue">The Thunderbird Cafe</div>
-          <div class="show-location">Pittsburgh, PA</div>
-          <p style="color: var(--text-muted); margin: 1rem 0;">Acoustic set featuring songs from upcoming album</p>
-        </div>
-
-        <div class="show-card">
-          <div class="show-date">February 28, 2026</div>
-          <div class="show-venue">Belvedere's</div>
-          <div class="show-location">Pittsburgh, PA</div>
-          <p style="color: var(--text-muted); margin: 1rem 0;">Full band performance with special guest artists</p>
-        </div>
-
-        <div class="show-card">
-          <div class="show-date">January 10, 2026</div>
-          <div class="show-venue">Heinz History Center</div>
-          <div class="show-location">Pittsburgh, PA</div>
-          <p style="color: var(--text-muted); margin: 1rem 0;">Celebration concert for local musicians</p>
-        </div>
-
-        <div class="show-card">
-          <div class="show-date">December 19, 2025</div>
-          <div class="show-venue">Market Square Holiday Festival</div>
-          <div class="show-location">Pittsburgh, PA</div>
-          <p style="color: var(--text-muted); margin: 1rem 0;">Holiday music performance for city celebration</p>
-        </div>
-
-        <div class="show-card">
-          <div class="show-date">November 8, 2025</div>
-          <div class="show-venue">The Mockingbird</div>
-          <div class="show-location">Pittsburgh, PA</div>
-          <p style="color: var(--text-muted); margin: 1rem 0;">Album release party for "Cowboy Heartbreaker"</p>
-        </div>
       </div>
     </div>
   </section>
@@ -271,5 +447,22 @@
   </footer>
 
   <script src="../js/main.js"></script>
+  <script>
+    function filterShows(type) {
+      const items = document.querySelectorAll('.show-list-item');
+      const buttons = document.querySelectorAll('.filter-btn');
+      
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      items.forEach(item => {
+        if (type === 'all') {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.toggle('hidden', item.dataset.type !== type);
+        }
+      });
+    }
+  </script>
 </body>
 </html>
